@@ -15,7 +15,7 @@ const isSellerQueue = (callback) => {
             window.is_seller_is_queue = 1;
             window.window.hybrid && window.hybrid.config({
                 jsApiList: {getUserInfo: 'optional'}
-            }, function (error, result) {
+            }, (error, result) => {
                 if (error) {
                     window.is_seller_is_queue = 0;
                     return;
@@ -26,7 +26,7 @@ const isSellerQueue = (callback) => {
                     window.is_seller_is_queue = 0;
                     return;
                 }
-                window.hybrid.getUserInfo(function (error, res) {
+                window.hybrid.getUserInfo((error, res) => {
                     if (error) {
                         window.is_seller_is_queue = 0;
                         return;
@@ -39,7 +39,7 @@ const isSellerQueue = (callback) => {
                     callback(window.is_seller_type);
                     // 若存在未执行队列
                     if (window.is_seller_queue_arr && window.is_seller_queue_arr !== 0) {
-                        window.is_seller_queue_arr.forEach(function(ele, index){
+                        window.is_seller_queue_arr.forEach((ele, index) => {
                             typeof ele === 'function' && ele(window.is_seller_type);
                             window.is_seller_queue_arr[index] = null;
                         })
