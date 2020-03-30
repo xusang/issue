@@ -38,10 +38,10 @@ const isSellerQueue = (callback) => {
                     }
                     callback(window.is_seller_type);
                     // 若存在未执行队列
-                    if (window.is_seller_queue_arr && window.is_seller_queue_arr !== 0) {
+                    if (window.is_seller_queue_arr && window.is_seller_queue_arr.length !== 0) {
                         window.is_seller_queue_arr.forEach((ele, index) => {
                             typeof ele === 'function' && ele(window.is_seller_type);
-                            window.is_seller_queue_arr[index] = null;
+                            window.is_seller_queue_arr.splice(index, 1);
                         })
                     }
                     // 去除执行中
